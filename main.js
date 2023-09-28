@@ -5,8 +5,9 @@ document.querySelector('#app').innerHTML = `
   <div class="container">
     <div class="main-heading">
       <h1>Metric/Imperial Unit Conversion</h1>
-      <input id="input-el" class="number-input" type="number" min=0>
+      <input id="input-el" class="number-input" type="number" min=1>
       <button id="convert-btn" class="convert-btn">Convert</button>
+      <p id="error-msg-el"></p>
     </div>
     <div class="convert-sections">
       <section class="convert-info">
@@ -30,6 +31,7 @@ const convertBtn = document.getElementById("convert-btn")
 const lengthResultsEl = document.getElementById("length-results")
 const volumeResultsEl = document.getElementById("volume-results")
 const massResultsEl = document.getElementById("mass-results")
+const errorMsgEl = document.getElementById("error-msg-el")
 
 console.log(lengthResultsEl)
 console.log(volumeResultsEl)
@@ -45,6 +47,9 @@ convertBtn.addEventListener("click", function() {
 
   let inputValue = inputEl.value
 
+  errorMsgEl.textContent = ""
+ 
+
   clearFields()
 
   const meterToFeet = convertMeterToFeet(inputValue)
@@ -54,19 +59,23 @@ convertBtn.addEventListener("click", function() {
   const kgToPound = convertKgToPounds(inputValue)
   const poundToKg = convertPoundsToKg(inputValue)
 
-  for (let i = 0; i < unitArray.length; i+=2) {
-    if (unitArray[i] === "meters" && unitArray[i + 1] === "feet") {
-      const unitStr1 = unitArray[i]
-      const unitStr2 = unitArray[i + 1]
-      renderInfo(unitStr1, unitStr2, inputValue, meterToFeet, feetToMeter, lengthResultsEl)
-    } else if (unitArray[i] === "litres" && unitArray[i + 1] === "gallons") {
-      const unitStr1 = unitArray[i]
-      const unitStr2 = unitArray[i + 1]
-      renderInfo(unitStr1, unitStr2, inputValue, litreToGallon, gallonToLitre, volumeResultsEl)
-    } else if (unitArray[i] === "kilos" && unitArray[i + 1] === "pounds") {
-      const unitStr1 = unitArray[i]
-      const unitStr2 = unitArray[i + 1]
-      renderInfo(unitStr1, unitStr2, inputValue, kgToPound , poundToKg, massResultsEl)
+  if (inputValue < 1) {
+    errorMsgEl.textContent = "Number cannot be less than 1"
+  } else {
+    for (let i = 0; i < unitArray.length; i+=2) {
+      if (unitArray[i] === "meters" && unitArray[i + 1] === "feet") {
+        const unitStr1 = unitArray[i]
+        const unitStr2 = unitArray[i + 1]
+        renderInfo(unitStr1, unitStr2, inputValue, meterToFeet, feetToMeter, lengthResultsEl)
+      } else if (unitArray[i] === "litres" && unitArray[i + 1] === "gallons") {
+        const unitStr1 = unitArray[i]
+        const unitStr2 = unitArray[i + 1]
+        renderInfo(unitStr1, unitStr2, inputValue, litreToGallon, gallonToLitre, volumeResultsEl)
+      } else if (unitArray[i] === "kilos" && unitArray[i + 1] === "pounds") {
+        const unitStr1 = unitArray[i]
+        const unitStr2 = unitArray[i + 1]
+        renderInfo(unitStr1, unitStr2, inputValue, kgToPound , poundToKg, massResultsEl)
+      }
     }
   }
 
