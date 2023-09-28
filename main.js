@@ -14,7 +14,7 @@ document.querySelector('#app').innerHTML = `
         <div id="length-results"></div>
       </section>
       <section class="convert-info">
-        <h2 class="card-title">Volume (Liters/Gallons)</h2>
+        <h2 class="card-title">Volume (Litres/Gallons)</h2>
         <div id="volume-results"></div>
       </section>
       <section class="convert-info">
@@ -41,12 +41,12 @@ const convertValuseMass = 2.205
 
 // when btn is clicked, perfrom conversion and then display the conversion
 convertBtn.addEventListener("click", function() {
-  const unitArray = ["meters", "feet", "litre", "gallon", "kilos", "pounds"]
+  const unitArray = ["meters", "feet", "litres", "gallons", "kilos", "pounds"]
 
   let inputValue = inputEl.value
 
   clearFields()
-  
+
   const meterToFeet = convertMeterToFeet(inputValue)
   const feetToMeter = convertFootToMeter(inputValue)
   const litreToGallon = convertLitreToGallon(inputValue)
