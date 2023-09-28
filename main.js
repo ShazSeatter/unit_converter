@@ -59,7 +59,7 @@ convertBtn.addEventListener("click", function() {
       const unitStr1 = unitArray[i]
       const unitStr2 = unitArray[i + 1]
       renderInfo(unitStr1, unitStr2, inputValue, meterToFeet, feetToMeter, lengthResultsEl)
-    } else if (unitArray[i] === "litre" && unitArray[i + 1] === "gallon") {
+    } else if (unitArray[i] === "litres" && unitArray[i + 1] === "gallons") {
       const unitStr1 = unitArray[i]
       const unitStr2 = unitArray[i + 1]
       renderInfo(unitStr1, unitStr2, inputValue, litreToGallon, gallonToLitre, volumeResultsEl)
